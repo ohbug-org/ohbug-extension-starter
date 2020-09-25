@@ -6,6 +6,12 @@
   <p>An open source application information monitoring platform.</p>
 </div>
 
+# OhbugExtension starter
+
+Use this template to create your own Ohbug extension.
+
+English | [简体中文](./README-zh_CN.md)
+
 ## Quick start
 
 1.  **Git clone the repo.**

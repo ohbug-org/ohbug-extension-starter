@@ -6,6 +6,12 @@
   <p>开源应用信息监控平台</p>
 </div>
 
+# OhbugExtension starter
+
+使用这个模板仓库创建属于你的 Ohbug 扩展。
+
+[English](./README.md) | 简体中文
+
 ## 开始
 
 1.  **Git clone the repo.**
