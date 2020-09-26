@@ -4,7 +4,7 @@ import { createExtension } from '@ohbug/core'
  * Create an extension that collects data. You can get more detailed documentation here.
  * https://ohbug.net/docs/library/CustomExtension
  */
-export const extension = createExtension({
+const extension = createExtension({
   name: 'OhbugExtensionName',
   init: () => {
     // You can initialize the data collection program here
@@ -22,3 +22,5 @@ export const extension = createExtension({
     // 如果你想上报后做一些事情
   },
 })
+
+export default extension

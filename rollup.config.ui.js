@@ -1,58 +1,41 @@
 import path from 'path'
 import postcss from 'rollup-plugin-postcss'
-import { createConfig } from './rollup.config.base'
+import { createConfig, createMinifiedConfig } from './rollup.config.base'
 
+const name = `ui`
 const pkg = require('./package.json')
-
-const name = pkg.name
 const extensionName = pkg.ohbug.ui.name
 const input = path.resolve(__dirname, 'ui/component.tsx')
-const configs = {
+const packageFormats = {
+  umd: {
+    file: path.resolve(`dist/${name}.umd.js`),
+    format: `umd`,
+    name: extensionName,
+    globals: {
+      react: 'React',
+    },
+  },
   esm: {
+    file: path.resolve(`dist/${name}.esm.js`),
     format: `es`,
   },
-  umd: {
-    format: `umd`,
-  },
-  global: {
-    format: `iife`,
-  },
-  cjs: {
-    format: `cjs`,
-  },
 }
-const packageFormats = ['umd']
-const external = ['react']
-const additionalPlugins = [
+const plugins = [
   postcss({
     plugins: [],
   }),
 ]
+const external = ['react']
 
-const packageConfigs = [
-  createConfig({
-    name,
-    extensionName,
-    input,
-    configs,
-    packageFormats,
-    isProduction: false,
-    external,
-    additionalPlugins,
-  }),
-]
-if (process.env.NODE_ENV === 'production')
-  packageConfigs.push(
-    createConfig({
-      name,
-      extensionName,
-      input,
-      configs,
-      packageFormats,
-      isProduction: true,
-      external,
-      additionalPlugins,
-    })
-  )
+const packageConfigs = Object.keys(packageFormats).map((format) =>
+  createConfig(input, packageFormats[format], plugins, external)
+)
+if (process.env.NODE_ENV === 'production') {
+  Object.keys(packageFormats).forEach((format) => {
+    if (format === 'umd' || format === 'esm') {
+      packageConfigs.push(createMinifiedConfig(input, packageFormats[format], plugins, external))
+    }
+  })
+}
 
 export default packageConfigs

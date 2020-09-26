@@ -1,47 +1,35 @@
 import path from 'path'
-import { createConfig } from './rollup.config.base'
+import { createConfig, createMinifiedConfig } from './rollup.config.base'
 
+const name = `index`
 const pkg = require('./package.json')
-
-const name = pkg.name
 const extensionName = pkg.ohbug.name
 const input = path.resolve('src/index.ts')
-const configs = {
+const packageFormats = {
+  umd: {
+    file: path.resolve(`dist/${name}.umd.js`),
+    format: `umd`,
+    name: extensionName,
+  },
   esm: {
+    file: path.resolve(`dist/${name}.esm.js`),
     format: `es`,
   },
-  umd: {
-    format: `umd`,
-  },
-  global: {
-    format: `iife`,
-  },
   cjs: {
+    file: path.resolve(`dist/${name}.cjs.js`),
     format: `cjs`,
   },
 }
-const packageFormats = ['esm', 'umd', 'global', 'cjs']
 
-const packageConfigs = [
-  createConfig({
-    name,
-    extensionName,
-    input,
-    configs,
-    packageFormats,
-    isProduction: false,
-  }),
-]
-if (process.env.NODE_ENV === 'production')
-  packageConfigs.push(
-    createConfig({
-      name,
-      extensionName,
-      input,
-      configs,
-      packageFormats,
-      isProduction: true,
-    })
-  )
+const packageConfigs = Object.keys(packageFormats).map((format) =>
+  createConfig(input, packageFormats[format], [], [])
+)
+if (process.env.NODE_ENV === 'production') {
+  Object.keys(packageFormats).forEach((format) => {
+    if (format === 'umd' || format === 'esm') {
+      packageConfigs.push(createMinifiedConfig(input, packageFormats[format], [], []))
+    }
+  })
+}
 
 export default packageConfigs
