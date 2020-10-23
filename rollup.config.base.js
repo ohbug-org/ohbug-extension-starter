@@ -1,6 +1,7 @@
 import path from 'path'
 import nodeResolve from '@rollup/plugin-node-resolve'
 import commonjs from '@rollup/plugin-commonjs'
+import replace from '@rollup/plugin-replace'
 import ts from 'rollup-plugin-typescript2'
 
 export function createConfig(input, output, plugins = [], external = []) {
@@ -17,7 +18,15 @@ export function createConfig(input, output, plugins = [], external = []) {
   return {
     input,
     output,
-    plugins: [tsPlugin, nodeResolve({ extensions }), commonjs(commonjsOptions), ...plugins],
+    plugins: [
+      replace({
+        'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV ? 'production' : 'development'),
+      }),
+      tsPlugin,
+      nodeResolve({ extensions }),
+      commonjs(commonjsOptions),
+      ...plugins,
+    ],
     external,
   }
 }
