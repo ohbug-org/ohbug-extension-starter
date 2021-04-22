@@ -18,18 +18,15 @@ English | [简体中文](./README-zh_CN.md)
     ```shell
     git clone git@github.com:ohbug-org/ohbug-extension-starter.git
     ```
-    
 1.  **Installation dependencies.**
     ```shell
     cd ohbug-extension-starter/
     yarn
     ```
-    
 1.  **Start developing.**
     ```shell
     yarn dev
     ```
-    
 1.  **Build.**
     ```shell
     yarn build
@@ -70,9 +67,9 @@ A quick look at the directory structure of **Ohbug Extension** project.
 
 1.  **`LICENSE`**: This **ohbug-extension-starter** is licensed under the MIT license.
 
-1. **`package.json`**: This file is how npm knows which packages to install for your project. Ohbug will query the extension's `name`, `key`, ui-extension's `name`, `cdn` and other data from this file.
+1.  **`package.json`**: This file is how npm knows which packages to install for your project. Ohbug will query the extension's `name`, `key`, ui-extension's `name`, `cdn` and other data from this file.
 
-1. **`README.md`**: A text file containing useful reference information about your project.
+1.  **`README.md`**: A text file containing useful reference information about your project.
 
 ## `package.json` `ohbug` field explanation
 
@@ -87,7 +84,7 @@ A quick look at the directory structure of **Ohbug Extension** project.
       // The name of the UI component corresponding to the extension
       "name": "OhbugExtensionUIStarter",
       // The cdn link of the corresponding UI component of the extension, the Ohbug online console will obtain the resource file according to the link provided here
-      // Recommend to use jsdelivr or unpkg      
+      // Recommend to use jsdelivr or unpkg
       "cdn": "your_cdn"
     }
   }

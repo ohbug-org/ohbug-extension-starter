@@ -18,18 +18,15 @@
     ```shell
     git clone git@github.com:ohbug-org/ohbug-extension-starter.git
     ```
-    
 1.  **安装依赖**
     ```shell
     cd ohbug-extension-starter/
     yarn
     ```
-    
 1.  **开始调试**
     ```shell
     yarn dev
     ```
-    
 1.  **打包**
     ```shell
     yarn build
@@ -70,9 +67,9 @@
 
 1.  **`LICENSE`**: **ohbug-extension-starter** 根据 MIT 许可授权。
 
-1. **`package.json`**: 此文件告知 npm 为您的项目安装哪些软件包。Ohbug 将从该文件中查询扩展的 `name`、`key`，ui扩展的 `name`、`cdn` 和其他数据。
+1.  **`package.json`**: 此文件告知 npm 为您的项目安装哪些软件包。Ohbug 将从该文件中查询扩展的 `name`、`key`，ui 扩展的 `name`、`cdn` 和其他数据。
 
-1. **`README.md`**: 此文件包含与本项目有关的说明文档、参考信息等。
+1.  **`README.md`**: 此文件包含与本项目有关的说明文档、参考信息等。
 
 ## `package.json` `ohbug` 字段解释
 
