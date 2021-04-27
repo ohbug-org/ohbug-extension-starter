@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "update:deps": "pnpm update --interactive --latest"
+    "update:deps": "yarn upgrade-interactive --latest"
   },
   "dependencies": {},
   "peerDependencies": {
