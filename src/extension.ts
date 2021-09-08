@@ -15,11 +15,17 @@ const extension = createExtension({
     // 如果你需要在上报前对 `Event` 进行修改亦或是阻止上报，`created` 提供了做到这些事情的能力。
     // If you need to prevent the report from being reported, just return `false` in `created`.
     // 如果需要阻止上报，在 `created` 内返回 `false` 即可。
+
+    // eslint-disable-next-line no-console
+    console.log({ event, client })
     return event
   },
   notified: (event, client) => {
     // If you want to do something after reporting
     // 如果你想上报后做一些事情
+
+    // eslint-disable-next-line no-console
+    console.log({ event, client })
   },
 })
 
