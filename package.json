@@ -20,7 +20,7 @@
     "url": "https://github.com/ohbug-org/ohbug-extension-starter"
   },
   "license": "MIT",
-  "main": "./dist/extension.cjs.min.js",
+  "main": "./dist/extension.umd.min.js",
   "module": "./dist/extension.es.min.js",
   "unpkg": "./dist/extension.es.min.js",
   "jsdelivr": "./dist/extension.es.min.js",
@@ -28,7 +28,7 @@
   "exports": {
     ".": {
       "import": "./dist/extension.es.min.js",
-      "require": "./dist/extension.cjs.min.js"
+      "require": "./dist/extension.umd.min.js"
     }
   },
   "files": [
@@ -54,6 +54,7 @@
     "rollup": "^2.56.3",
     "rollup-plugin-postcss": "^4.0.1",
     "rollup-plugin-terser": "^7.0.2",
+    "rollup-plugin-typescript2": "^0.30.0",
     "typescript": "^4.4.2"
   },
   "publishConfig": {
@@ -61,7 +62,7 @@
   },
   "scripts": {
     "prebuild": "rimraf dist",
-    "build": "npm run build:extension & npm run build:ui",
+    "build": "npm run build:extension && npm run build:ui",
     "dev": "rollup -cw",
     "build:ui": "rollup -c rollup.config.ui.js --environment NODE_ENV:production",
     "build:extension": "rollup -c --environment NODE_ENV:production",

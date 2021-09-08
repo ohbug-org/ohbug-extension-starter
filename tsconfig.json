@@ -3,9 +3,7 @@
   "compilerOptions": {
     "lib": ["ESNext", "DOM"],
     "target": "ES2015",
-    "outDir": "dist",
-    "declaration": true,
-    "declarationDir": "."
+    "outDir": "dist"
   },
   "include": [
     "src",

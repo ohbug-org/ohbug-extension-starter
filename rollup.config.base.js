@@ -2,17 +2,19 @@ import path from 'path'
 import nodeResolve from '@rollup/plugin-node-resolve'
 import commonjs from '@rollup/plugin-commonjs'
 import replace from '@rollup/plugin-replace'
-import ts from '@rollup/plugin-typescript'
+import ts from 'rollup-plugin-typescript2'
 import { terser } from 'rollup-plugin-terser'
 
 export function createConfig(input, output, plugins = [], external = []) {
   const tsPlugin = ts({
+    check: process.env.NODE_ENV === 'production',
     tsconfig: path.resolve(__dirname, 'tsconfig.json'),
   })
   const extensions = ['.js', '.ts']
   const commonjsOptions = {
     ignoreGlobal: true,
     include: /node_modules/,
+    extensions,
   }
 
   return {
