@@ -1,15 +1,8 @@
 {
-  "ohbug": {
-    "name": "OhbugExtensionStarter",
-    "key": "starter",
-    "ui": {
-      "name": "OhbugExtensionUIStarter",
-      "cdn": "your_cdn"
-    }
-  },
   "name": "ohbug-extension-starter",
   "version": "1.2.1",
   "description": "A simple starter to get up quickly with Ohbug Extension",
+  "license": "MIT",
   "author": "chenyueban <jasonchan0527@gmail.com>",
   "homepage": "https://github.com/ohbug-org/ohbug-extension-starter",
   "bugs": {
@@ -19,59 +12,50 @@
     "type": "git",
     "url": "https://github.com/ohbug-org/ohbug-extension-starter"
   },
-  "license": "MIT",
-  "main": "./dist/extension.umd.min.js",
-  "module": "./dist/extension.es.min.js",
-  "unpkg": "./dist/extension.es.min.js",
-  "jsdelivr": "./dist/extension.es.min.js",
-  "types": "./dist/src/index.d.ts",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
   "exports": {
     ".": {
-      "import": "./dist/extension.es.min.js",
-      "require": "./dist/extension.umd.min.js"
+      "require": "./dist/index.js",
+      "import": "./dist/index.mjs",
+      "types": "./dist/index.d.ts"
     }
   },
   "files": [
     "dist"
   ],
+  "scripts": {
+    "prebuild": "rimraf dist",
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "release": "release-it",
+    "preinstall": "npx only-allow pnpm",
+    "update:deps": "pnpm update -i -r --latest",
+    "lint": "tsc && eslint . --fix",
+    "prepare": "husky install"
+  },
   "dependencies": {
-    "@ohbug/core": "^1.1.4"
+    "@ohbug/core": "^2.1.0",
+    "@ohbug/types": "^2.1.0"
   },
   "devDependencies": {
-    "@chenyueban/lint": "^1.0.9",
-    "@chenyueban/tsconfig": "^0.2.0",
-    "@commitlint/cli": "^13.1.0",
-    "@release-it/conventional-changelog": "^3.3.0",
-    "@rollup/plugin-commonjs": "^20.0.0",
-    "@rollup/plugin-node-resolve": "^13.0.2",
-    "@rollup/plugin-replace": "^3.0.0",
-    "commitizen": "^4.2.4",
+    "@chenyueban/eslint-config": "^1.0.12",
+    "@chenyueban/tsconfig": "^2.1.0",
+    "@commitlint/cli": "^17.0.3",
+    "@commitlint/config-conventional": "^17.0.3",
+    "@release-it/conventional-changelog": "^5.0.0",
+    "commitizen": "^4.2.5",
     "cz-conventional-changelog": "3.3.0",
-    "postcss": "^8.3.6",
-    "release-it": "^14.11.5",
+    "eslint": "^8.20.0",
+    "husky": "^8.0.1",
+    "lint-staged": "^13.0.3",
+    "release-it": "^15.1.2",
     "rimraf": "^3.0.2",
-    "rollup": "^2.56.3",
-    "rollup-plugin-postcss": "^4.0.1",
-    "rollup-plugin-terser": "^7.0.2",
-    "rollup-plugin-typescript2": "^0.30.0",
-    "typescript": "^4.4.2"
+    "tsup": "^6.1.3",
+    "typescript": "^4.7.4"
   },
   "publishConfig": {
     "access": "public"
-  },
-  "scripts": {
-    "prebuild": "rimraf dist",
-    "build": "npm run build:extension && npm run build:ui",
-    "dev": "rollup -cw",
-    "build:ui": "rollup -c rollup.config.ui.js --environment NODE_ENV:production",
-    "build:extension": "rollup -c --environment NODE_ENV:production",
-    "update:deps": "yarn upgrade-interactive --latest",
-    "release": "release-it",
-    "commit": "cz"
-  },
-  "config": {
-    "commitizen": {
-      "path": "./node_modules/cz-conventional-changelog"
-    }
   }
 }

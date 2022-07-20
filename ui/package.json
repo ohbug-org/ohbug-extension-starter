@@ -1,8 +1,0 @@
-{
-  "scripts": {
-    "update:deps": "yarn upgrade-interactive --latest"
-  },
-  "dependencies": {
-    "@ohbug/core": "^1.1.5"
-  }
-}

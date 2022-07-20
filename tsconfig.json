@@ -1,16 +1,13 @@
 {
-  "extends": "./node_modules/@chenyueban/tsconfig/tsconfig.json",
+  "extends": "@chenyueban/tsconfig",
   "compilerOptions": {
-    "lib": ["ESNext", "DOM"],
-    "target": "ES2015",
     "outDir": "dist"
   },
   "include": [
-    "src",
-    "ui",
-    "rollup.config.js",
-    "rollup.config.base.js",
-    "rollup.config.ui.js"
+    "src/**/*"
   ],
-  "exclude": ["dist"]
+  "exclude": [
+    "node_modules/",
+    "dist/"
+  ]
 }
