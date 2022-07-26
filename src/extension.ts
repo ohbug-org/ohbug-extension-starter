@@ -1,10 +1,10 @@
-import { defineExtension } from '@ohbug/core'
+import type { OhbugExtension } from '@ohbug/types'
 
 /**
  * Create an extension that collects data. You can get more detailed documentation here.
  * https://ohbug.net/guide/extension
  */
-const extension = defineExtension({
+const extension: OhbugExtension = {
   name: 'OhbugExtensionName',
   onSetup: () => {
     // You can initialize the data collection program here
@@ -27,6 +27,6 @@ const extension = defineExtension({
     // eslint-disable-next-line no-console
     console.log({ event, client })
   },
-})
+}
 
 export default extension
