@@ -1,0 +1,7 @@
+{
+  "extends": "@chenyueban/tsconfig",
+  "compilerOptions": {
+    "outDir": "dist",
+    "jsx": "react-jsx"
+  }
+}
